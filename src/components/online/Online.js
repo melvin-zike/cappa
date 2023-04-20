@@ -66,7 +66,7 @@ export default function Online({ user }) {
   // };
 
   return (
-    <div className="rightbarFriend" key={key}>
+    <div className="rightbarFriend">
       <div className="rightbarProfileImgContainer">
         <img
           className="rightbarProfileImg"

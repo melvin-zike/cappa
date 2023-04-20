@@ -13,10 +13,6 @@ export default function Rightbar({ user }) {
   const [randomusers, setRandomUsers] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
 
-  const [followed, setFollowed] = useState(
-    currentUser?.followings.includes(currentUser?.userId)
-  );
-
   useEffect(() => {
     const getFriends = async () => {
       try {
