@@ -77,10 +77,12 @@ export default function Register() {
         </div>
 
         <div className="registerLeft">
-          <h3 className="registerLogo">Domot</h3>
+          <h3 className="registerLogo">Cappa</h3>
           <span className="registerDesc">
-            <p>We dey your domot!</p>
-            <p>Connect with friends and the world around you on Domot.</p>
+            <p>Update your cappa!</p>
+            <p>
+              Connect with friends and the world around you on Cappa Social.
+            </p>
             <p>Nigeria's number 1 social media platform.</p>
           </span>
           <AnimatedShapes className="animay" />

@@ -56,10 +56,12 @@ export default function Login() {
         </div>
 
         <div className="loginLeft">
-          <h3 className="loginLogo">Domot</h3>
+          <h3 className="loginLogo">Cappa</h3>
           <span className="loginDesc">
-            <p>We dey your domot!</p>
-            <p>Connect with friends and the world around you on Domot.</p>
+            <p>Update your capping!</p>
+            <p>
+              Connect with friends and the world around you on Cappa Social.
+            </p>
             <p>Nigeria's number 1 social media platform.</p>
           </span>
           <AnimatedShapes className="animay" />
