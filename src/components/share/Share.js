@@ -30,7 +30,7 @@ export default function Share() {
       newPost.img = fileName;
       console.log(newPost);
       try {
-        await axios.post("/upload", data, {
+        await axios.post("/api/upload", data, {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -42,7 +42,7 @@ export default function Share() {
       if (newPost.desc === "") {
         console.log("fill in the form");
       } else {
-        await axios.post("/posts", newPost, {
+        await axios.post("/api/posts", newPost, {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,

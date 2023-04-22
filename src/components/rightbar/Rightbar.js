@@ -17,7 +17,7 @@ export default function Rightbar({ user }) {
     const getFriends = async () => {
       try {
         const friendList = await axios.get(
-          "/users/friends/" + currentUser?._id,
+          "/api/users/friends/" + currentUser?._id,
           {
             headers: {
               token:
@@ -38,7 +38,7 @@ export default function Rightbar({ user }) {
   useEffect(() => {
     const getRandomUsers = async () => {
       try {
-        const userList = await axios.get("/users/all", {
+        const userList = await axios.get("/api/users/all", {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,

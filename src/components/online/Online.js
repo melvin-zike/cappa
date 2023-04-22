@@ -15,7 +15,7 @@ export default function Online({ user }) {
 
   const handleClick = async () => {
     try {
-      await axios.put(`/users/${user?._id}/follow`, {
+      await axios.put(`/api/users/${user?._id}/follow`, {
         userId: currentUser?._id,
         headers: {
           token:
@@ -27,7 +27,7 @@ export default function Online({ user }) {
   };
   const handleUnfollow = async () => {
     try {
-      await axios.put(`/users/${user?._id}/unfollow`, {
+      await axios.put(`/api/users/${user?._id}/unfollow`, {
         userId: currentUser?._id,
         headers: {
           token:

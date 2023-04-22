@@ -1,17 +1,17 @@
 import "./post.css";
-import { useContext, useEffect, useState} from "react";
-import { MoreVert, Chat, } from "@material-ui/icons";
+import { useContext, useEffect, useState } from "react";
+import { MoreVert, Chat } from "@material-ui/icons";
 import axios from "axios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import  Comments from "../comments/Comments"
-import  Commentry from "../commentry/Commentry"
+import Comments from "../comments/Comments";
+import Commentry from "../commentry/Commentry";
 
 export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
-  const [text, setText] = useState([])
+  const [text, setText] = useState([]);
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user: currentUser } = useContext(AuthContext);
@@ -22,9 +22,10 @@ export default function Post({ post }) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/users?userId=${post.userId}`, {
+      const res = await axios.get(`/api/users?userId=${post.userId}`, {
         headers: {
-          token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+          token:
+            "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
         },
       });
       setUser(res.data);
@@ -34,16 +35,20 @@ export default function Post({ post }) {
 
   const likeHandler = () => {
     try {
-      axios.put("/posts/" + post._id + "/like", { userId: currentUser._id }, {
-        headers: {
-          token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        },
-      });
+      axios.put(
+        "/api/posts/" + post._id + "/api/like",
+        { userId: currentUser._id },
+        {
+          headers: {
+            token:
+              "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+          },
+        }
+      );
     } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
-  
 
   return (
     <div className="post">
@@ -73,14 +78,13 @@ export default function Post({ post }) {
           <img className="postImg" src={PF + post.img} alt="" />
         </div>
         <div className="postBottom">
-          
-            
-            <span className="postLikeCounter">{like}likes</span>
-            
-            {/* <span className="postLikeCounter">{post.credit.length}money</span> */}
-           
-            <span className="postCommentText">{post.comments.length} comments</span>
- 
+          <span className="postLikeCounter">{like}likes</span>
+
+          {/* <span className="postLikeCounter">{post.credit.length}money</span> */}
+
+          <span className="postCommentText">
+            {post.comments.length} comments
+          </span>
         </div>
         <div className="commentBottom">
           <div className="postBottomLeft">
@@ -91,21 +95,21 @@ export default function Post({ post }) {
               alt=""
             />
             <span className="postLikeCounter"></span>
-            
           </div>
           <div className="postBottomRight">
-            <span className="postCommentText"><Chat className="commentIcon" /></span>
+            <span className="postCommentText">
+              <Chat className="commentIcon" />
+            </span>
           </div>
-          
         </div>
-        <div className="hLine">
-        </div>
-        <p>{post.comments.map((c) => (
-              <Comments comments={c} />
-            ))}</p>
-        <Commentry sender={currentUser} actualPost={post} user={user}/>
+        <div className="hLine"></div>
+        <p>
+          {post.comments.map((c) => (
+            <Comments comments={c} />
+          ))}
+        </p>
+        <Commentry sender={currentUser} actualPost={post} user={user} />
       </div>
-      
     </div>
   );
 }
